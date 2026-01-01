@@ -83,14 +83,14 @@ main {
 }
 
 .row {
-  display: flex;              /* THIS is critical */
+  display: flex;              
   justify-content: center;
   gap: 8px;
   margin-bottom: 8px;
 }
 
 .key {
-  display: inline-flex;       /* Forces proper box behavior */
+  display: inline-flex;       
   align-items: center;
   justify-content: center;
 

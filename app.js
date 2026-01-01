@@ -50,7 +50,7 @@ function init() {
 function getRandomWord() {
   const allWords = [
     ...wordBank.randomWords,
-    ...wordBank.spaceWords
+    ...wordBank.roboWords
   ];
   return allWords[Math.floor(Math.random() * allWords.length)];
 }
