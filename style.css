@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+/* -------- BODY / GLOBAL -------- */
+
+body {
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-size: 25px;
+}
+
+button {
+  border: 0;
+  height: 3vh;
+  width: 10vh;
+  margin-top: 1vh;
+  font-family: "Chakra Petch", sans-serif;
+  background-color: rgb(195, 219, 240);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* -------- RULES -------- */
+
+.rules {
+  position: absolute;
+  left: 2vh;
+  top: 15vh;
+  border: double grey;
+  max-width: 30vh;
+  min-height: 50vh;
+  border-radius: 5vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#head {
+  text-decoration: underline;
+  font-size: 35px;
+}
+
+/* -------- MAIN GAME -------- */
+
+main {
+  margin-left: 30vh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#word-display {
+  font-size: 50px;
+  margin: 2vh 0;
+}
+
+#attempts-remaining {
+  margin-top: 1vh;
+}
+
+/* -------- KEYBOARD CONTAINER -------- */
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;              /* THIS is critical */
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.key {
+  display: inline-flex;       /* Forces proper box behavior */
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: lightgray;
+
+  cursor: pointer;
+  user-select: none;
+  font-weight: bold;
+}
+
+.key:hover {
+  background-color: #ddd;
+}
+
+.key.used {
+  background-color: #aaa;
+  color: #666;
+  pointer-events: none;
+}
+.key.correct {
+  background-color: #4caf50;
+  color: white;
+  pointer-events: none;
+}
+.key.incorrect {
+  background-color: #f44336;
+  color: white;
+  pointer-events: none;
+}

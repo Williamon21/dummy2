@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="rules">
+        <p id="head">Rules</p>
+            <p>You have 6 attempts to guess the word.</p>
+            <p>Each incorrect letter guessed will count as an attempt.</p>
+            <p>You can guess one letter at a time.</p>
+            <p>If you guess the word before running out of attempts, you win!</p>
+    </div>
+    <main>
+        <h1>Hangman Game</h1>
+        <button id="start-button">Start Game</button>
+        <div id="game-area" style="display:none;">
+    <p id="word-display">_ _ _ _ _</p>
+    <input type="text" id="letter-input" maxlength="1">
+    <button id="guess-button">Guess</button>
+    <p id="attempts-remaining">Attempts remaining: 6</p>
+    <p id="message"></p>
+</div>
+</main>
+
+<div id="keyboard" style="display:none;">
+  <div class="row">
+    <div class="display"></div>
+  </div>
+
+  <div class="row">
+    <div class="key">Q</div>
+    <div class="key">W</div>
+    <div class="key">E</div>
+    <div class="key">R</div>
+    <div class="key">T</div>
+    <div class="key">Y</div>
+    <div class="key">U</div>
+    <div class="key">I</div>
+    <div class="key">O</div>
+    <div class="key">P</div>
+  </div>
+
+  <div class="row">
+    <div class="key">A</div>
+    <div class="key">S</div>
+    <div class="key">D</div>
+    <div class="key">F</div>
+    <div class="key">G</div>
+    <div class="key">H</div>
+    <div class="key">J</div>
+    <div class="key">K</div>
+    <div class="key">L</div>
+  </div>
+
+  <div class="row">
+    <div class="key">Z</div>
+    <div class="key">X</div>
+    <div class="key">C</div>
+    <div class="key">V</div>
+    <div class="key">B</div>
+    <div class="key">N</div>
+    <div class="key">M</div>
+  </div>
+</div>
+
+<div class="popup-ctr" style="display:none;">
+  <div class="popup">
+    <button class="reset">Play Again</button>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
