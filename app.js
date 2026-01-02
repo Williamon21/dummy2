@@ -19,6 +19,7 @@ const keys = document.querySelectorAll('.key');
 const keyboard = document.getElementById('keyboard');
 const popup = document.querySelector('.popup-ctr');
 const resetBtn = document.querySelector('.reset');
+const rulesEl = document.querySelector('.rules');
 
 /* ----- EVENT LISTENERS ----- */
 startBtn.addEventListener('click', init);
@@ -37,6 +38,7 @@ function init() {
   wordToGuess = getRandomWord().toUpperCase();
   revealedLetters = Array(wordToGuess.length).fill('_');
 
+  rulesEl.style.display = 'none';
   keyboard.style.display = 'flex';
   document.getElementById('game-area').style.display = 'block';
   popup.style.display = 'none';
@@ -95,7 +97,9 @@ function checkResult() {
 function endGame(win) {
   gameOver = true;
   popup.style.display = 'flex';
-  messageEl.textContent = win
-    ? '🎉 You Win!!'
-    : `💀 You Lose!! The word was "${wordToGuess}"`;
+  if (win) {
+  messageEl.textContent = 'You Win!!';
+} else {
+  messageEl.textContent = `You Lose!! The word was "${wordToGuess}"`;
+}
 }
