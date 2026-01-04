@@ -2,104 +2,157 @@
 import { wordBank } from './wordlist.js';
 
 /* ----- STATE ----- */
-let guessesLeft;
-let wordToGuess;
-let revealedLetters;
-let gameOver;
+// changing variables
+let guessesLeft = 6;
+let selectedLetter = "";
+let PokemontoGuess;
+let otrMons;
+let dragonTypes;
+let allLettersRevealed = false;
 
-/* ----- CONSTANTS ----- */
-const MAX_TRIES = 6;
+// cached element
+const btnStart = document.querySelector("#startBtn");
+const btnLetters = document.querySelectorAll(".letter-ctr div");
+const option = document.querySelector(".optionCtr");
+const playAgainBtn = document.querySelector(".reset");
+const otrMonsBank = document.querySelector(".optionOthers");
+const rdmdragonTypesBank = document.querySelector(".optionDragon");
+const backgroundImg = document.querySelector(".movingPic");
+const Who = document.querySelector(".WhosThatPokemon");
 
-/* ----- CACHED ELEMENTS ----- */
-const startBtn = document.getElementById('start-button');
-const wordDisplay = document.getElementById('word-display');
-const attemptsEl = document.getElementById('attempts-remaining');
-const messageEl = document.getElementById('message');
-const keys = document.querySelectorAll('.key');
-const keyboard = document.getElementById('keyboard');
-const popup = document.querySelector('.popup-ctr');
-const resetBtn = document.querySelector('.reset');
-const rulesEl = document.querySelector('.rules');
-
-/* ----- EVENT LISTENERS ----- */
-startBtn.addEventListener('click', init);
-resetBtn.addEventListener('click', () => location.reload());
-
-keys.forEach(key => {
-  key.addEventListener('click', () => handleLetterClick(key));
+// event listeners
+btnStart.addEventListener("click", function () {
+  option.style.visibility = "visible";
+  btnStart.style.visibility = "hidden";
+});
+option.addEventListener("click", function () {
+  option.style.visibility = "hidden";
 });
 
-/* ----- FUNCTIONS ----- */
+playAgainBtn.addEventListener("click", resetGame);
 
-function init() {
-  guessesLeft = MAX_TRIES;
-  gameOver = false;
+rdmdragonTypesBank.addEventListener("click", function () {
+  dragonTypes =
+    wordBank.dragons[Math.floor(Math.random() * wordBank.dragons.length)];
+  renderGame(dragonTypes);
+  // console.log(dragonTypes);
+});
+otrMonsBank.addEventListener("click", function () {
+  otrMons =
+    wordBank.otherMons[
+      Math.floor(Math.random() * wordBank.otherMons.length)
+    ];
+  renderGame(otrMons);
+  // console.log(otrMons);
+});
 
-  wordToGuess = getRandomWord().toUpperCase();
-  revealedLetters = Array(wordToGuess.length).fill('_');
-
-  rulesEl.style.display = 'none';
-  keyboard.style.display = 'flex';
-  document.getElementById('game-area').style.display = 'block';
-  popup.style.display = 'none';
-
-  keys.forEach(k => k.classList.remove('used'));
-
-  messageEl.textContent = '';
-  render();
+// functions
+initializeGame();
+function initializeGame() {
+  guessesLeft = 6;
+  btnStart.style.visibility = "visible";
+  backgroundImg.src = "./assets/hangman6.png";
 }
 
-function getRandomWord() {
-  const allWords = [
-    ...wordBank.randomWords,
-    ...wordBank.roboWords
-  ];
-  return allWords[Math.floor(Math.random() * allWords.length)];
-}
+function renderGame(word) {
+  playerGuessLetters();
+  backgroundImg.src = "./assets/hangman0.png";
+  Who.innerHTML = "";
 
-
-function handleLetterClick(key) {
-  if (gameOver || key.classList.contains('used')) return;
-
-  const selectedLetter = key.textContent;
-  key.classList.add('used');
-
-  let letterFound = false;
-
-  for (let i = 0; i < wordToGuess.length; i++) {
-    if (wordToGuess[i] === selectedLetter) {
-      revealedLetters[i] = selectedLetter;
-      letterFound = true;
-    }
+  for (let i = 0; i < word.length; i++) {
+    let letter = document.createElement("div");
+    letter.innerText = "_";
+    Who.appendChild(letter);
   }
+}
 
+function resetGame() {
+  endGame();
+  initializeGame();
+  Who.innerHTML = "";
+  btnStart.style.visibility = "visible";
+  option.style.visibility = "hidden";
+  btnStart.innerText = "Start";
+  btnLetters.forEach((letter) => {
+    letter.style.backgroundColor = "#F0F4F8";
+  });
+}
+function endGame() {
+  btnLetters.forEach((letter) => {
+    letter.removeEventListener("click", handleLetterClick);
+  });
+}
+
+// determine which word to check based on the option selected
+function checkWord() {
+  if (dragonTypes) {
+    PokemontoGuess = dragonTypes;
+  } else {
+    PokemontoGuess = otrMons;
+  }
+}
+
+function playerGuessLetters() {
+  checkWord();
+  btnLetters.forEach((letter) => {
+    letter.addEventListener("click", handleLetterClick);
+  });
+}
+
+function handleLetterClick() {
+  const selectedLetter = this.innerText;
+  this.style.backgroundColor = "black";
+  // console.log('Selected letter:', selectedLetter);
+  let letterFound = checkLetterInWord(selectedLetter);
   if (!letterFound) {
+    //if letter selected is wrong, change the image
     guessesLeft--;
+    backgroundImg.src = `./assets/hangman${6 - guessesLeft}.png`;
+    console.log(`${guessesLeft}`);
   }
-
-  render();
+  allLettersRevealed = checkIfPlayerRevealAllLetters();
   checkResult();
 }
 
-function render() {
-  wordDisplay.textContent = revealedLetters.join(' ');
-  attemptsEl.textContent = `Attempts remaining: ${guessesLeft}`;
+function checkLetterInWord(selectedLetter) {
+  // check if the selected letter is in the word to guess
+  let wordLetters = PokemontoGuess.split("");
+  let WhoDivs = Who.querySelectorAll("div");
+  let result = false;
+  for (let i = 0; i < wordLetters.length; i++) {
+    if (wordLetters[i].toLowerCase() === selectedLetter.toLowerCase()) {
+      WhoDivs[i].innerText = wordLetters[i];
+      result = true;
+    }
+  }
+  return result;
+}
+
+// checking if player reveals all the letters or not
+function checkIfPlayerRevealAllLetters() {
+  let revealedLetters = Who.querySelectorAll("div");
+  let result = true;
+  for (let i = 0; i < revealedLetters.length; i++) {
+    if (revealedLetters[i].innerText === "_") {
+      result = false;
+      break;
+    }
+  }
+  return result;
 }
 
 function checkResult() {
-  if (!revealedLetters.includes('_')) {
-    endGame(true);
+  if (allLettersRevealed === true) {
+    btnStart.style.visibility = "visible";
+    btnStart.style.height = "auto";
+    btnStart.style.width = "15vh";
+    btnStart.innerText = "You Win!!";
+    endGame();
   } else if (guessesLeft === 0) {
-    endGame(false);
+    btnStart.style.visibility = "visible";
+    btnStart.style.height = "auto";
+    btnStart.style.width = "15vh";
+    btnStart.innerText = "You Lose!!";
+    endGame();
   }
-}
-
-function endGame(win) {
-  gameOver = true;
-  popup.style.display = 'flex';
-  if (win) {
-  messageEl.textContent = 'You Win!!';
-} else {
-  messageEl.textContent = `You Lose!! The word was "${wordToGuess}"`;
-}
 }

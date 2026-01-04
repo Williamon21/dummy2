@@ -1,78 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Comfortaa:wght@300&display=swap"
+      rel="stylesheet"
+  />
+
+  <script type="module" src="app.js"></script>
+  <title>Spaceman(PE)</title>
 </head>
-<body>
+
+  <body>
     <div class="rules">
-        <p id="head">Rules</p>
-            <p>You have 6 attempts to guess the word.</p>
-            <p>Each incorrect letter guessed will count as an attempt.</p>
-            <p>You can guess one letter at a time.</p>
-            <p>If you guess the word before running out of attempts, you win!</p>
+      <p id="head">Rules</p>
+      <p>The normal rules apply as regular Spaceman</p>
+      <p>You will have 6 guesses to get the word right and keep Garchomp calm</p>
+      <p>However if you don't, well...you'll see</p>
     </div>
     <main>
-        <h1>Hangman Game</h1>
-        <button id="start-button">Start Game</button>
-        <div id="game-area" style="display:none;">
-    <p id="word-display">_ _ _ _ _</p>
-    <input type="text" id="letter-input" maxlength="1">
-    <button id="guess-button">Guess</button>
-    <p id="attempts-remaining">Attempts remaining: 6</p>
-    <p id="message"></p>
-</div>
-</main>
+      <img src="./assets/hangman0.png" alt="image" class="movingPic" />
+      <header id="titleGame" class="top-ctr">Spaceman(PE)</header>
+      <h1 id="startBtn" class="top-ctr">Start</h1>
+      <div class="WhosThatPokemon"></div>
+    </main>
 
-<div id="keyboard" style="display:none;">
-  <div class="row">
-    <div class="display"></div>
-  </div>
-
-  <div class="row">
-    <div class="key">Q</div>
-    <div class="key">W</div>
-    <div class="key">E</div>
-    <div class="key">R</div>
-    <div class="key">T</div>
-    <div class="key">Y</div>
-    <div class="key">U</div>
-    <div class="key">I</div>
-    <div class="key">O</div>
-    <div class="key">P</div>
-  </div>
-
-  <div class="row">
-    <div class="key">A</div>
-    <div class="key">S</div>
-    <div class="key">D</div>
-    <div class="key">F</div>
-    <div class="key">G</div>
-    <div class="key">H</div>
-    <div class="key">J</div>
-    <div class="key">K</div>
-    <div class="key">L</div>
-  </div>
-
-  <div class="row">
-    <div class="key">Z</div>
-    <div class="key">X</div>
-    <div class="key">C</div>
-    <div class="key">V</div>
-    <div class="key">B</div>
-    <div class="key">N</div>
-    <div class="key">M</div>
-  </div>
-</div>
-
-<div class="popup-ctr" style="display:none;">
-  <div class="popup">
-    <button class="reset">Play Again</button>
-  </div>
-</div>
-
-<script type="module" src="app.js"></script>
-</body>
+    <nav class="optionCtr">
+      <h1 id="category">Select the Category</h1>
+      <button class="optionOthers">Others</button>
+      <button class="optionDragon">Dragon</button>
+    </nav>
+    <sub-main>
+      <footer id="userChoice" class="letter-ctr">
+        <div class="letterA">A</div>
+        <div class="letterB">B</div>
+        <div class="letterC">C</div>
+        <div class="letterD">D</div>
+        <div class="letterE">E</div>
+        <div class="letterF">F</div>
+        <div class="letterG">G</div>
+        <div class="letterH">H</div>
+        <div class="letterI">I</div>
+        <div class="letterJ">J</div>
+        <div class="letterK">K</div>
+        <div class="letterL">L</div>
+        <div class="letterM">M</div>
+        <div class="letterN">N</div>
+        <div class="letterO">O</div>
+        <div class="letterP">P</div>
+        <div class="letterQ">Q</div>
+        <div class="letterR">R</div>
+        <div class="letterS">S</div>
+        <div class="letterT">T</div>
+        <div class="letterU">U</div>
+        <div class="letterV">V</div>
+        <div class="letterW">W</div>
+        <div class="letterX">X</div>
+        <div class="letterY">Y</div>
+        <div class="letterZ">Z</div>
+      </footer>
+    </sub-main>
+    <div class="popup-ctr">
+      <div class="popup">
+        <button class="reset">Play Again</button>
+      </div>
+    </div>
+  </body>
 </html>

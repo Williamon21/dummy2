@@ -2,46 +2,22 @@
   box-sizing: border-box;
 }
 
-/* -------- BODY / GLOBAL -------- */
-
-body {
-  background-color: #f0f4f8;
-  min-height: 100vh;
+/*----------------------------------------
+  TOP CONTAINER
+----------------------------------------*/
+.top-ctr {
+  position: absolute;
+  top: 0;
   display: flex;
-  flex-direction: column;
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
+/*----------------------------------------
+  TEXT
+----------------------------------------*/
 p {
   font-size: 25px;
-}
-
-button {
-  border: 0;
-  height: 3vh;
-  width: 10vh;
-  margin-top: 1vh;
-  font-family: "Chakra Petch", sans-serif;
-  background-color: rgb(195, 219, 240);
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* -------- RULES -------- */
-
-.rules {
-  position: absolute;
-  left: 2vh;
-  top: 15vh;
-  border: double grey;
-  max-width: 30vh;
-  min-height: 50vh;
-  border-radius: 5vh;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 #head {
@@ -49,79 +25,196 @@ button {
   font-size: 35px;
 }
 
-/* -------- MAIN GAME -------- */
+/*----------------------------------------
+  WHO'S THAT POKÉMON
+----------------------------------------*/
+.WhosThatPokemon {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70vh;
+  font-size: 50px;
+}
 
-main {
+.WhosThatPokemon > div {
+  color: rgb(101, 101, 101);
+  padding: 1rem;
+}
+
+/*----------------------------------------
+  RULES BOX
+----------------------------------------*/
+.rules {
+  position: absolute;
+  margin-top: 15vh;
+  border: double grey;
+  max-width: 30vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  border-radius: 5vh;
+  padding: 5px;
+}
+
+/*----------------------------------------
+  OPTIONS
+----------------------------------------*/
+.optionCtr {
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
   margin-left: 30vh;
+}
+
+.optionOthers {
+  position: absolute;
+  top: 0;
+  margin-left: 20vh;
+  margin-top: 20vh;
+}
+
+.optionDragon {
+  position: absolute;
+  top: 0;
+  margin-right: 20vh;
+  margin-top: 20vh;
+}
+
+/*----------------------------------------
+  IMAGES
+----------------------------------------*/
+img {
+  height: 100%;
+  width: 100%;
+  border: double grey;
+  border-radius: 3vh;
+}
+
+/*----------------------------------------
+  HEADER
+----------------------------------------*/
+header {
+  height: 10vh;
+  width: 35vh;
+  font-size: 50px;
+}
+
+/*----------------------------------------
+  BUTTONS
+----------------------------------------*/
+#startBtn {
+  border-radius: 5px;
+  background-color: rgb(224, 228, 0);
+  height: 5vh;
+  width: 10vh;
+  margin-top: 10vh;
+}
+
+#category {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16vh;
+}
+
+button {
+  border: 0;
+  height: 3vh;
+  width: 10vh;
+  margin-top: 1vh;
+  font-family: "Press Start 2P", monospace;
+  background-color: rgb(195, 219, 240);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.reset {
+  position: fixed;     /* stays in the same spot even when scrolling */
+  top: 1rem;           /* distance from the top of the viewport */
+  right: 1rem;         /* distance from the right edge of the viewport */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #ff2d2d;
+  color: black;
+  font-family: "Press Start 2P", monospace;
+  border: none;
+  z-index: 1000;       /* ensures it sits above everything */
+  transition: all 0.3s ease;
+
+}
+
+/*----------------------------------------
+  BODY
+----------------------------------------*/
+body {
+  background-color: #F5F7FA;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}
+
+/*----------------------------------------
+  MAIN
+----------------------------------------*/
+main {
+  position: relative;
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-left: 30vh;
 }
 
-#game-area {
+/*----------------------------------------
+  ASIDE
+----------------------------------------*/
+aside {
+  border: solid;
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+
+/*----------------------------------------
+  SUB-MAIN
+----------------------------------------*/
+sub-main {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;
 }
 
-#word-display {
-  font-size: 50px;
-  margin: 2vh 0;
-}
-
-#attempts-remaining {
-  margin-top: 1vh;
-}
-
-/* -------- KEYBOARD CONTAINER -------- */
-#keyboard {
+/*----------------------------------------
+  LETTER GRID
+----------------------------------------*/
+.letter-ctr {
+  border-radius: 5px;
+  border: 5px;
+  text-align: center;
+  height: 5vh;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
 }
 
-.row {
-  display: flex;              
+/*----------------------------------------
+  FOOTER / POPUP
+----------------------------------------*/
+footer > div {
+  border: 2px solid rgb(185, 185, 185);
+  border-radius: 10px;
+}
+
+.popup {
+  display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.key {
-  display: inline-flex;       
   align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-
-  border: 2px solid black;
-  border-radius: 8px;
-  background-color: lightgray;
-
-  cursor: pointer;
-  user-select: none;
-  font-weight: bold;
-}
-
-.key:hover {
-  background-color: #ddd;
-}
-
-.key.used {
-  background-color: #aaa;
-  color: #666;
-  pointer-events: none;
-}
-.key.correct {
-  background-color: #4caf50;
-  color: white;
-  pointer-events: none;
-}
-.key.incorrect {
-  background-color: #f44336;
-  color: white;
-  pointer-events: none;
 }
