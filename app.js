@@ -1,30 +1,49 @@
 /* ----- IMPORT WORD BANK ----- */
 import { wordBank } from './wordlist.js';
 
-/* ----- STATE ----- */
-// changing variables
+/*---------------------------- Variables (state) ----------------------------*/
+
 let guessesLeft = 6;
+
 let selectedLetter = "";
+
 let PokemontoGuess;
+
 let otrMons;
+
 let dragonTypes;
+
+let Legendary;
+
 let allLettersRevealed = false;
 
-// cached element
+/*-------------------------------- CONSTANTS --------------------------------*/
+
 const btnStart = document.querySelector("#startBtn");
+
 const btnLetters = document.querySelectorAll(".letter-ctr div");
+
 const option = document.querySelector(".optionCtr");
+
 const playAgainBtn = document.querySelector(".reset");
+
 const otrMonsBank = document.querySelector(".optionOthers");
+
 const rdmdragonTypesBank = document.querySelector(".optionDragon");
+
+const LegendaryBank = document.querySelector(".optionLegendary");
+
 const backgroundImg = document.querySelector(".movingPic");
+
 const Who = document.querySelector(".WhosThatPokemon");
 
-// event listeners
+/*----------------------------- EVENT LISTENERS -----------------------------*/
+
 btnStart.addEventListener("click", function () {
   option.style.visibility = "visible";
   btnStart.style.visibility = "hidden";
 });
+
 option.addEventListener("click", function () {
   option.style.visibility = "hidden";
 });
@@ -37,6 +56,8 @@ rdmdragonTypesBank.addEventListener("click", function () {
   renderGame(dragonTypes);
   // console.log(dragonTypes);
 });
+
+
 otrMonsBank.addEventListener("click", function () {
   otrMons =
     wordBank.otherMons[
@@ -46,7 +67,19 @@ otrMonsBank.addEventListener("click", function () {
   // console.log(otrMons);
 });
 
-// functions
+
+LegendaryBank.addEventListener("click", function () {
+  Legendary =
+    wordBank.Legendary[
+      Math.floor(Math.random() * wordBank.Legendary.length)
+    ];
+  renderGame(Legendary);
+  // console.log(Legendary);
+});
+
+/*-------------------------------- FUNCTIONS --------------------------------*/
+
+
 initializeGame();
 function initializeGame() {
   guessesLeft = 6;
@@ -87,9 +120,11 @@ function endGame() {
 function checkWord() {
   if (dragonTypes) {
     PokemontoGuess = dragonTypes;
-  } else {
+  } else if (otrMons) {
     PokemontoGuess = otrMons;
-  }
+  } else {
+PokemontoGuess = Legendary;
+}
 }
 
 function playerGuessLetters() {

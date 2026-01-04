@@ -82,6 +82,13 @@ p {
   margin-top: 20vh;
 }
 
+
+.optionLegendary {
+  position: absolute;
+  top: 0;
+  margin-left: 0vh;
+  margin-top: 30vh;
+}
 /*----------------------------------------
   IMAGES
 ----------------------------------------*/
