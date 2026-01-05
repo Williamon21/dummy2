@@ -15,7 +15,7 @@ let dragonTypes;
 
 let Legendary;
 
-let allLettersRevealed = false;
+let PokemonRevealed = false;
 
 /*-------------------------------- CONSTANTS --------------------------------*/
 
@@ -33,7 +33,7 @@ const rdmdragonTypesBank = document.querySelector(".optionDragon");
 
 const LegendaryBank = document.querySelector(".optionLegendary");
 
-const backgroundImg = document.querySelector(".movingPic");
+const backgroundImg = document.querySelector(".angrynoivern");
 
 const Who = document.querySelector(".WhosThatPokemon");
 
@@ -54,7 +54,6 @@ rdmdragonTypesBank.addEventListener("click", function () {
   dragonTypes =
     wordBank.dragons[Math.floor(Math.random() * wordBank.dragons.length)];
   renderGame(dragonTypes);
-  // console.log(dragonTypes);
 });
 
 
@@ -64,7 +63,6 @@ otrMonsBank.addEventListener("click", function () {
       Math.floor(Math.random() * wordBank.otherMons.length)
     ];
   renderGame(otrMons);
-  // console.log(otrMons);
 });
 
 
@@ -74,7 +72,6 @@ LegendaryBank.addEventListener("click", function () {
       Math.floor(Math.random() * wordBank.Legendary.length)
     ];
   renderGame(Legendary);
-  // console.log(Legendary);
 });
 
 /*-------------------------------- FUNCTIONS --------------------------------*/
@@ -84,12 +81,12 @@ initializeGame();
 function initializeGame() {
   guessesLeft = 6;
   btnStart.style.visibility = "visible";
-  backgroundImg.src = "./assets/hangman6.png";
+  backgroundImg.src = "./assets/noivern6.png";
 }
 
 function renderGame(word) {
   playerGuessLetters();
-  backgroundImg.src = "./assets/hangman0.png";
+  backgroundImg.src = "./assets/noivern0.png";
   Who.innerHTML = "";
 
   for (let i = 0; i < word.length; i++) {
@@ -107,7 +104,7 @@ function resetGame() {
   option.style.visibility = "hidden";
   btnStart.innerText = "Start";
   btnLetters.forEach((letter) => {
-    letter.style.backgroundColor = "#F0F4F8";
+    letter.style.backgroundColor = "#3e5872ff";
   });
 }
 function endGame() {
@@ -116,7 +113,6 @@ function endGame() {
   });
 }
 
-// determine which word to check based on the option selected
 function checkWord() {
   if (dragonTypes) {
     PokemontoGuess = dragonTypes;
@@ -136,21 +132,18 @@ function playerGuessLetters() {
 
 function handleLetterClick() {
   const selectedLetter = this.innerText;
-  this.style.backgroundColor = "black";
-  // console.log('Selected letter:', selectedLetter);
+  this.style.backgroundColor = "red";
   let letterFound = checkLetterInWord(selectedLetter);
   if (!letterFound) {
-    //if letter selected is wrong, change the image
     guessesLeft--;
-    backgroundImg.src = `./assets/hangman${6 - guessesLeft}.png`;
+    backgroundImg.src = `./assets/noivern${6 - guessesLeft}.png`;
     console.log(`${guessesLeft}`);
   }
-  allLettersRevealed = checkIfPlayerRevealAllLetters();
+  PokemonRevealed = checkIfPlayerRevealAllLetters();
   checkResult();
 }
 
 function checkLetterInWord(selectedLetter) {
-  // check if the selected letter is in the word to guess
   let wordLetters = PokemontoGuess.split("");
   let WhoDivs = Who.querySelectorAll("div");
   let result = false;
@@ -163,7 +156,6 @@ function checkLetterInWord(selectedLetter) {
   return result;
 }
 
-// checking if player reveals all the letters or not
 function checkIfPlayerRevealAllLetters() {
   let revealedLetters = Who.querySelectorAll("div");
   let result = true;
@@ -177,17 +169,30 @@ function checkIfPlayerRevealAllLetters() {
 }
 
 function checkResult() {
-  if (allLettersRevealed === true) {
+  if (PokemonRevealed === true && guessesLeft === 1) {
+    
     btnStart.style.visibility = "visible";
     btnStart.style.height = "auto";
-    btnStart.style.width = "15vh";
-    btnStart.innerText = "You Win!!";
+    btnStart.style.width = "25vh";
+    btnStart.innerText = "Great, um...maybe we should give him a berry?";
     endGame();
-  } else if (guessesLeft === 0) {
+  } 
+
+  else if (PokemonRevealed === true) {
+    
     btnStart.style.visibility = "visible";
     btnStart.style.height = "auto";
     btnStart.style.width = "15vh";
-    btnStart.innerText = "You Lose!!";
+    btnStart.innerText = "You got it!!";
+    endGame();
+  } 
+
+  else if (guessesLeft === 0) {
+    
+    btnStart.style.visibility = "visible";
+    btnStart.style.height = "auto";
+    btnStart.style.width = "20vh";
+    btnStart.innerText = "Draco Meteor...Run!";
     endGame();
   }
 }

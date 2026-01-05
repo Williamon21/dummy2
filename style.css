@@ -39,7 +39,7 @@ p {
 }
 
 .WhosThatPokemon > div {
-  color: rgb(101, 101, 101);
+  color: rgb(255, 255, 255);
   padding: 1rem;
 }
 
@@ -48,15 +48,13 @@ p {
 ----------------------------------------*/
 .rules {
   position: absolute;
-  margin-top: 15vh;
-  border: double grey;
-  max-width: 30vh;
-  display: flex;
-  flex-direction: column;
-  min-height: 50vh;
-  border-radius: 5vh;
-  padding: 5px;
+  margin: 2rem auto;
+  max-width: 300px;
+  background: rgb(104, 146, 26);
+  border-radius: 16px;
+  padding: 1.5rem;
 }
+
 
 /*----------------------------------------
   OPTIONS
@@ -93,8 +91,8 @@ p {
   IMAGES
 ----------------------------------------*/
 img {
-  height: 100%;
-  width: 100%;
+  height: 50%;
+  width: 50%;
   border: double grey;
   border-radius: 3vh;
 }
@@ -114,6 +112,7 @@ header {
 #startBtn {
   border-radius: 5px;
   background-color: rgb(224, 228, 0);
+  font-family: "Press Start 2P", monospace;
   height: 5vh;
   width: 10vh;
   margin-top: 10vh;
@@ -146,7 +145,7 @@ button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 8px;
-  background-color: #ff2d2d;
+  background-color: #455eca;
   color: black;
   font-family: "Press Start 2P", monospace;
   border: none;
@@ -159,7 +158,7 @@ button {
   BODY
 ----------------------------------------*/
 body {
-  background-color: #F5F7FA;
+  background-color: #204b26;
   height: 90vh;
   display: flex;
   flex-direction: column;
